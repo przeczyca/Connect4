@@ -1,0 +1,27 @@
+.everything {
+  text-align: center;
+}
+
+.gameCell {
+  position: relative;
+  height: 100px;
+  width: 100px;
+  background-color: lightgray;
+}
+
+.gameCellCircle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 85px;
+  width: 85px;
+  background-color: white;
+  border-radius: 50%;
+}
+
+.gameWrapper {
+  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(7, 100px);
+}
