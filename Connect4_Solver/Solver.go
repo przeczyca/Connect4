@@ -2,6 +2,7 @@ package main
 
 import (
 	"bufio"
+	"bytes"
 	"errors"
 	"fmt"
 	"log"
@@ -148,17 +149,22 @@ func getBestColumns(position string) string {
 
 func runSolver(position string, newColumn int, scores *[]int, waitGroup *sync.WaitGroup) {
 	defer waitGroup.Done()
-	cmd := exec.Command("C:/Projects/Connect4/Connect4_Solver/Magic/c4solver", position+strconv.Itoa(newColumn))
+	cmd := exec.Command("./Magic/c4solver", position+strconv.Itoa(newColumn))
+	var out bytes.Buffer
+	var stderr bytes.Buffer
+	cmd.Stdout = &out
+	cmd.Stderr = &stderr
 
-	out, solverErr := cmd.CombinedOutput()
-	if solverErr != nil {
-		log.Fatal(solverErr)
-	} else if string(out) == "Invalid Move" {
-		//log.Printf(string(out))
+	err := cmd.Run()
+	if err != nil {
+		log.Println(fmt.Sprint(err) + ": " + stderr.String())
+		log.Fatal(err)
+	} else if out.String() == "Invalid Move" {
+		log.Printf("Invalid Move: " + position + strconv.Itoa(newColumn))
 		return
 	}
 
-	score, err := strconv.Atoi(string(out))
+	score, err := strconv.Atoi(out.String())
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -173,7 +179,7 @@ func main() {
 	router := gin.Default()
 	router.Use(cors.Default())
 	router.POST("/getOneBestMove", getOneBestMove)
-	router.Run("localhost:8080")
+	router.Run(":8080")
 }
 
 func setBeginningPositions() {
