@@ -10,11 +10,7 @@ import (
 	"sync"
 )
 
-var positionMap = map[string]string{
-	"": "4",
-}
-
-func SetBeginningPositions() {
+func SetBeginningPositions(positionMap map[string]string) {
 	files := [5]string{
 		"1stPositions.txt",
 		"2ndPositions.txt",

@@ -47,7 +47,7 @@ func runSolver(position string, newColumn int, scores *[]int, waitGroup *sync.Wa
 		log.Fatal(err)
 	}
 
-	cmd := exec.Command(path+"/Magic/c4solver", position+strconv.Itoa(newColumn))
+	cmd := exec.Command(path+"/internal/Magic/c4solver", position+strconv.Itoa(newColumn))
 	var out bytes.Buffer
 	var stderr bytes.Buffer
 	cmd.Stdout = &out

@@ -38,7 +38,7 @@ function Game() {
                 body: JSON.stringify({ position: gamePosition })
             };
 
-            const url = 'http://192.168.25.20:8080'
+            const url = 'http://localhost:8080'
 
             fetch(url + '/getOneBestMove', requestOptions)
                 .then(response => response.json())

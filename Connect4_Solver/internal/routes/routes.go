@@ -25,11 +25,11 @@ var positionMap = map[string]string{
 }
 
 func NewRouter() {
-	positionFiles.SetBeginningPositions()
+	positionFiles.SetBeginningPositions(positionMap)
 	router := gin.Default()
 	router.Use(cors.Default())
 	router.POST("/getOneBestMove", getOneBestMove)
-	router.Run(":8080")
+	router.Run("localhost:8080")
 }
 
 func getOneBestMove(c *gin.Context) {
