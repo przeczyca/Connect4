@@ -11,7 +11,6 @@ import (
 )
 
 func GetBestColumns(position string) string {
-	fmt.Println("Solving " + position)
 	//map; key: score; value: string
 	scoreMap := map[int]string{}
 	maxScore := -999999
