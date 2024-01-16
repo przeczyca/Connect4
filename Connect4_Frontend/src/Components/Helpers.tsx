@@ -1,5 +1,5 @@
 export default class Helper {
-    hasWinner(gameState: string, playerTurn: string, index: number) {
+    hasWinner(gameState: string, playerTurn: string, index: number): boolean {
         let numInARow = 1;
         //check rows
         let idxToCheck = index - 1;
@@ -112,6 +112,8 @@ export default class Helper {
         if (numInARow >= 4) {
             return true;
         }
+
+        return false;
     }
 
     makeMove(gameState: string, setGameState: any, gamePosition: string, setGamePosition: any, playerTurn: string, setPlayerTurn: any, column: number, setWinner: any): void {
