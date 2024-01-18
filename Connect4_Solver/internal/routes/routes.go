@@ -4,12 +4,14 @@ import (
 	"fmt"
 	"math/rand"
 	"net/http"
+	"os"
 
 	"connect4/Connect4_Solver/internal/positionFiles"
 	"connect4/Connect4_Solver/internal/solve"
 
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
+	"github.com/joho/godotenv"
 )
 
 type connect4 struct {
@@ -29,7 +31,13 @@ func NewRouter() {
 	router := gin.Default()
 	router.Use(cors.Default())
 	router.POST("/getOneBestMove", getOneBestMove)
-	router.Run("localhost:8080")
+
+	err := godotenv.Load()
+	if err != nil {
+		panic(err)
+	}
+
+	router.Run(os.Getenv("SERVER_URL"))
 }
 
 func getOneBestMove(c *gin.Context) {

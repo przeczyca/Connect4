@@ -1,3 +1,5 @@
+.env
+
 .depend
 c4solver.exe
 main.o

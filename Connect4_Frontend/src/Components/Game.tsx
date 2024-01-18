@@ -38,7 +38,7 @@ function Game() {
                 body: JSON.stringify({ position: gamePosition })
             };
 
-            const url = 'http://localhost:8080'
+            const url = import.meta.env.VITE_API_URL;
 
             fetch(url + '/getOneBestMove', requestOptions)
                 .then(response => response.json())
