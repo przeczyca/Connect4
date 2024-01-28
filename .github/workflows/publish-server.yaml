@@ -19,5 +19,5 @@ jobs:
         working-directory: ./Connect4_Solver
         run: |
           docker login --username przeczyca  --password ${{ secrets.GH_PAT }} ghcr.io
-          docker build . --tag ghct.io/przeczyca/Connect4_Solver:latest
-          docker push ghct.io/przeczyca/Connect4_Solver:latest
+          docker build . --tag ghct.io/przeczyca/connect4_solver:latest
+          docker push ghct.io/przeczyca/connect4_solver:latest
