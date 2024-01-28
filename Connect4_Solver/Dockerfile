@@ -4,4 +4,6 @@ COPY . /app
 
 WORKDIR /app
 
-CMD cd Magic && make && cd .. && go run Solver.go
+EXPOSE 8080
+
+CMD cd internal/Magic && make && cd ../.. &&  go run cmd/Connect4_Solver/main.go
