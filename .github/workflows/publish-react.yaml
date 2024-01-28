@@ -18,6 +18,6 @@ jobs:
       - name: Build and push the image
         working-directory: ./Connect4_Frontend
         run: |
-          docker login --username przeczyca  --password ${{ secret.GH_PAT }} ghcr.io
+          docker login --username przeczyca  --password ${{ secrets.GH_PAT }} ghcr.io
           docker build . --tag ghct.io/przeczyca/Connect4_Frontend:latest
           docker push ghct.io/przeczyca/Connect4_Frontend:latest
