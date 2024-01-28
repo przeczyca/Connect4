@@ -1,9 +1,9 @@
 FROM node:20-alpine3.19
-WORKDIR /app
 
-# Run "npm run build" first so the "dist" folder exists
-COPY dist dist/
+COPY . /app
+
+WORKDIR /app
 
 EXPOSE 3000
 
-CMD ["npx", "serve", "dist"]
+CMD npm i && npm run build && npx serve dist

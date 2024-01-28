@@ -1,0 +1,23 @@
+name: Publish Go Server
+
+on:
+  workflow_run:
+    workflows: ["Go"]
+    types:
+      - completed
+
+jobs:
+  build_and_publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Add .env file
+        working-directory: ./Connect4_Solver
+        run: |
+          echo SERVER_URL = "$SERVER_URL" > .env
+      - name: Build and push the image
+        working-directory: ./Connect4_Solver
+        run: |
+          docker login --username przeczyca  --password ${{ secret.GH_PAT }} ghcr.io
+          docker build . --tag ghct.io/przeczyca/Connect4_Solver:latest
+          docker push ghct.io/przeczyca/Connect4_Solver:latest

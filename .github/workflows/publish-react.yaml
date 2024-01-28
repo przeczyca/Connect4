@@ -1,0 +1,23 @@
+name: Publish React Frontend
+
+on:
+  workflow_run:
+    workflows: ["Node.js CI"]
+    types:
+      - completed
+
+jobs:
+  build_and_publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Add .env file
+        working-directory: ./Connect4_Frontend
+        run: |
+          echo VITE_API_URL = "$VITE_API_URL" > .env
+      - name: Build and push the image
+        working-directory: ./Connect4_Frontend
+        run: |
+          docker login --username przeczyca  --password ${{ secret.GH_PAT }} ghcr.io
+          docker build . --tag ghct.io/przeczyca/Connect4_Frontend:latest
+          docker push ghct.io/przeczyca/Connect4_Frontend:latest
