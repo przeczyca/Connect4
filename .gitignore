@@ -1,6 +1,6 @@
 .env
 
 .depend
-c4solver.exe
+c4solver*
 main.o
 solver.o
