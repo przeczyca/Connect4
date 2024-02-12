@@ -6,6 +6,7 @@ import (
 	"log"
 	"os"
 	"os/exec"
+	"path/filepath"
 	"strconv"
 	"sync"
 )
@@ -44,6 +45,14 @@ func runSolver(position string, newColumn int, scores *[]int, waitGroup *sync.Wa
 	path, err := os.Getwd()
 	if err != nil {
 		log.Fatal(err)
+	}
+
+	for filepath.Base(path) != "Connect4" && filepath.Base(path) != "app" && path != "/" {
+		path = filepath.Dir(path)
+	}
+
+	if filepath.Base(path) != "Connect4" && filepath.Base(path) != "app" {
+		log.Fatal("path to /Connect4/ does not exist")
 	}
 
 	cmd := exec.Command(path+"/internal/Magic/c4solver", position+strconv.Itoa(newColumn))
