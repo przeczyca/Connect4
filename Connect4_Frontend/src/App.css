@@ -4,8 +4,8 @@
 
 .gameCell {
   position: relative;
-  height: 100px;
-  width: 100px;
+  height: 6.25em;
+  width: 6.25em;
   background-color: lightgray;
 }
 
@@ -14,14 +14,20 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  height: 85px;
-  width: 85px;
+  height: 5.25em;
+  width: 5.25em;
   background-color: white;
   border-radius: 50%;
 }
 
 .gameWrapper {
   justify-content: center;
+  margin: auto;
   display: grid;
+  padding: 0.25em;
+  grid-column-gap: 0.25em;
+  grid-row-gap: 0.25em;
+  background-color: black;
+  width: 45.25em;
   grid-template-columns: repeat(7, 100px);
 }
