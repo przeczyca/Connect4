@@ -3,6 +3,7 @@ import Helper from './Helpers';
 import Winner from './Winner';
 
 import { useEffect, useState } from 'react';
+import Switch from './switch/Switch';
 
 function Game() {
     const [gameState, setGameState] = useState("000000000000000000000000000000000000000000");
@@ -64,7 +65,11 @@ function Game() {
             {bot === playerTurn && <h1>Bot Thinking</h1>}
             <Winner winner={winner} />
             <button onClick={restartGame}>restart</button>
-            {gameState === "000000000000000000000000000000000000000000" && <button onClick={useBot}>{bot === "0" ? "set bot" : "bot is black"}</button>}
+            <br/><br/>
+            <div className='switchGroup'>
+                <label>{"Bot: "}</label>
+                <Switch state={bot} setState={setBot}></Switch>
+            </div>
         </div>
     )
 }

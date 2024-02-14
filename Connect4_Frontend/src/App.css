@@ -31,3 +31,9 @@
   width: 45.25em;
   grid-template-columns: repeat(7, 100px);
 }
+
+.switchGroup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
